@@ -8,3 +8,7 @@ const phrase = new Phrase('life is box of CHOCOLATE');
 const game = new Game();
 
 console.log(`Phrase - phrase: ${phrase.phrase}`);
+
+/**
+ * initial commit
+ */
