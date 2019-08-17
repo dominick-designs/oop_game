@@ -7,11 +7,30 @@
 class Game {
     constructor() {
         this.missed = 0;
-        this.phrase = [];
-        this.activePhrase = null; 
+        this.phrases = this.createPhrases();
+        this.activePhrase = null;
     }
-}
+    /**
+     * Creates phrases for use in game
+     * @return {array} An array of phrases that could be used in the game 
+    */
+    createPhrases() {
+        let phraseObjects = [
+            { phrase: 'first phrase' },
+            { phrase: 'second phrase' },
+            { phrase: 'third phrase' },
+            { phrase: 'fourth phrase' },
+            { phrase: 'fifth phrase' }
+        ];
+        return phraseObjects;
+    }
 
-/**
- * initial commit
- */
+    /**
+     * Selects random phrase from phrases property
+     * @return {Object} Phrase object chosen to be used
+     */
+    getRandomPhrase() {
+        let randomPhrase = Math.floor(Math.random() * this.phrases.length);
+        return this.phrases[randomPhrase];
+    }
+};

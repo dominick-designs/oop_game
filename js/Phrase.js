@@ -4,14 +4,24 @@
  create a Phrase class to handle the creation of phrases.
  * */
 
-// function Phrase (phrase) {
-//     this.phrase = phrase.toLowerCase();
-// }
-
 class Phrase {
-    constructor (phrase) {
+    constructor(phrase) {
         this.phrase = phrase.toLowerCase();
     }
-}
+    /**
+     * Display phrase on game board
+     */
+    addPhraseToDisplay() {
+        const div = document.createElement('div');
+        div.setAttribute('id', 'phrase');
+        div.setAttribute('class', 'section');
+        const ul = document.createElement('ul');
+        let li = document.createElement('li');
+        li.setAttribute('class', 'hide letter');
 
-/**initial commit */
+        li.innerHTML = 'ok list';
+        ul.appendChild(li);
+        div.appendChild(ul);
+
+    }
+}
