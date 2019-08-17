@@ -12,16 +12,26 @@ class Phrase {
      * Display phrase on game board
      */
     addPhraseToDisplay() {
-        const div = document.createElement('div');
-        div.setAttribute('id', 'phrase');
-        div.setAttribute('class', 'section');
-        const ul = document.createElement('ul');
-        let li = document.createElement('li');
-        li.setAttribute('class', 'hide letter');
+        let div = document.getElementById('phrase');
+        let ul = div.firstElementChild;
 
-        li.innerHTML = 'ok list';
-        ul.appendChild(li);
-        div.appendChild(ul);
+        let random = randomPhrase.phrase;
+        let splitLetters = [...random];
 
-    }
+        splitLetters.forEach(letters => {
+            let li = document.createElement('li');
+            let listText = (li.innerHTML = letters);
+
+            if (listText !== " ") {
+                li.setAttribute(`class`, `hide letter ${listText} `);
+            } else {
+                li.setAttribute('class', 'hide space');
+            }
+
+            ul.appendChild(li);
+            div.appendChild(ul);
+            console.log(listText);
+        });
+    };
 }
+

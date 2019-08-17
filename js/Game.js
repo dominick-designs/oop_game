@@ -16,11 +16,11 @@ class Game {
     */
     createPhrases() {
         let phraseObjects = [
-            { phrase: 'first phrase' },
-            { phrase: 'second phrase' },
-            { phrase: 'third phrase' },
-            { phrase: 'fourth phrase' },
-            { phrase: 'fifth phrase' }
+            { phrase: 'first phrase space1' },
+            { phrase: 'second phrase space2' },
+            { phrase: 'third phrase space3' },
+            { phrase: 'fourth phrase space4' },
+            { phrase: 'fifth phrase space5' }
         ];
         return phraseObjects;
     }
