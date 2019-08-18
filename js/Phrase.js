@@ -15,7 +15,7 @@ class Phrase {
         let div = document.getElementById('phrase');
         let ul = div.firstElementChild;
 
-        let random = randomPhrase.phrase;
+        let random = game.getRandomPhrase().phrase
         let splitLetters = [...random];
 
         splitLetters.forEach(letters => {

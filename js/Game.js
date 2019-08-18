@@ -16,11 +16,11 @@ class Game {
     */
     createPhrases() {
         let phraseObjects = [
-            { phrase: 'first phrase space1' },
-            { phrase: 'second phrase space2' },
-            { phrase: 'third phrase space3' },
-            { phrase: 'fourth phrase space4' },
-            { phrase: 'fifth phrase space5' }
+            { phrase: 'first phrase' },
+            { phrase: 'second phrase' },
+            { phrase: 'third phrase' },
+            { phrase: 'fourth phrase' },
+            { phrase: 'fifth phrase' }
         ];
         return phraseObjects;
     }
@@ -33,4 +33,15 @@ class Game {
         let randomPhrase = Math.floor(Math.random() * this.phrases.length);
         return this.phrases[randomPhrase];
     }
-};
+
+    /** * Begins game by selecting a random phrase and displaying it to user */
+    startGame() {
+        const div = document.getElementById('overlay').remove();
+        this.activePhrase = this.getRandomPhrase();
+        console.log(this.activePhrase);
+        const phrase = new Phrase(this.getRandomPhrase().phrase);
+        phrase.addPhraseToDisplay();
+    }
+
+    /** end Game Class */
+}
