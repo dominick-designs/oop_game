@@ -8,7 +8,7 @@ class Game {
     constructor() {
         this.missed = 0;
         this.phrases = this.createPhrases();
-        this.activePhrase = new Phrase(this.getRandomPhrase().phrase);
+        this.activePhrase = null;
     }
     /**
      * Creates phrases for use in game
@@ -16,11 +16,11 @@ class Game {
     */
     createPhrases() {
         let phraseObjects = [
-            { phrase: 'first phrase p' },
-            { phrase: 'second phrase p' },
-            { phrase: 'third phrase p' },
-            { phrase: 'fourth phrase p' },
-            { phrase: 'fifth phrase p' }
+            { phrase: 'fp' },
+            { phrase: 'sep' },
+            { phrase: 'tp' },
+            { phrase: 'fop' },
+            { phrase: 'fp' }
         ];
         return phraseObjects;
     }
@@ -38,8 +38,10 @@ class Game {
     /** * Begins game by selecting a random phrase and displaying it to user */
     startGame() {
         const div = document.getElementById('overlay').remove();
+        let active = new Phrase(this.getRandomPhrase().phrase);
+        this.activePhrase = active;
         this.activePhrase.addPhraseToDisplay();
-        console.log(this.activePhrase);
+        console.log(this.activePhrase.phrase);
         this.checkForWin();
     }
 
@@ -48,9 +50,23 @@ class Game {
      * @return {boolean} True if game has been won, false if game wasn't won 
      * */
     checkForWin() {
-        let phrase = this.activePhrase;
-        // let listOf = phrase.querySelectorAll('li');
-        console.log(phrase);
+        let classes = document.querySelectorAll('li.hide');
+        if (classes.length === 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /** * Increases the value of the missed property 
+     *  Removes a life from the scoreboard 
+     * Checks if player has remaining lives and ends game if player is out */
+
+    removeLife() {
+        /** if checkForWin() === false replace heart with gray heart */
+        if (this.checkForWin() === false) {
+            /** find the heart.png and replace */
+        }
     }
 
     handleInteraction() {

@@ -25,8 +25,8 @@ button.addEventListener('click', () => {
     game.startGame();
     game.checkForWin();
     phrase = new Phrase(game.activePhrase.phrase);
-    phrase.checkLetter('p');
-    phrase.showMatchedLetter('p');
+    // phrase.checkLetter('p');
+    // phrase.showMatchedLetter('p');
 });
 
 /**Let's start with testing the new Phrase class methods. To test the `checkLetter()` method, enter the following line of code directly into the console:

@@ -44,19 +44,18 @@ class Phrase {
         return listAll();
     }
 
+
     /** * Checks if passed letter is in phrase 
      *  @param (string) letter - Letter to check 
      * */
 
     checkLetter(letter) {
-        let classes = document.querySelectorAll('li');
-        classes = [...classes];
-        const checkAllLetters = classes.forEach(letters => {
-            if (letters.classList.contains(letter)) {
-                return true;
-            }
-        });
-        return true;
+        let currentPhrase = game.activePhrase.phrase;
+        if (currentPhrase.includes(letter)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /** * Displays passed letter on screen after a match is found
@@ -64,26 +63,18 @@ class Phrase {
      * */
 
     showMatchedLetter(letter) {
-
         if (this.checkLetter(letter) === true) {
-            let classes = document.querySelectorAll('li');
+            let classes = document.querySelectorAll('li.letter');
             classes = [...classes];
             const checkAllLetters = classes.forEach(letters => {
                 if (letters.classList.contains(letter)) {
-                    letters.classList.add('show')
+                    letters.classList.add('show');
+                    letters.classList.remove('hide');
                 }
             });
         }
 
     }
-
-    // classes = [...classes];
-    // classes = letter;
-    // const checkAllLetters = classes.forEach(letters => {
-    //     if (letters.classList.contains(letter)) {
-    //         letter.classList.add('show');
-    //     }
-    // });
 
     /** end Phrase class */
 }
