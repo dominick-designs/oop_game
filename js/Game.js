@@ -8,7 +8,7 @@ class Game {
     constructor() {
         this.missed = 0;
         this.phrases = this.createPhrases();
-        this.activePhrase = null;
+        this.activePhrase = new Phrase(this.getRandomPhrase().phrase);
     }
     /**
      * Creates phrases for use in game
@@ -16,11 +16,11 @@ class Game {
     */
     createPhrases() {
         let phraseObjects = [
-            { phrase: 'first phrase' },
-            { phrase: 'second phrase' },
-            { phrase: 'third phrase' },
-            { phrase: 'fourth phrase' },
-            { phrase: 'fifth phrase' }
+            { phrase: 'first phrase p' },
+            { phrase: 'second phrase p' },
+            { phrase: 'third phrase p' },
+            { phrase: 'fourth phrase p' },
+            { phrase: 'fifth phrase p' }
         ];
         return phraseObjects;
     }
@@ -32,15 +32,29 @@ class Game {
     getRandomPhrase() {
         let randomPhrase = Math.floor(Math.random() * this.phrases.length);
         return this.phrases[randomPhrase];
+
     }
 
     /** * Begins game by selecting a random phrase and displaying it to user */
     startGame() {
         const div = document.getElementById('overlay').remove();
-        this.activePhrase = this.getRandomPhrase();
+        this.activePhrase.addPhraseToDisplay();
         console.log(this.activePhrase);
-        const phrase = new Phrase(this.getRandomPhrase().phrase);
-        phrase.addPhraseToDisplay();
+        this.checkForWin();
+    }
+
+
+    /** * Checks for winning move 
+     * @return {boolean} True if game has been won, false if game wasn't won 
+     * */
+    checkForWin() {
+        let phrase = this.activePhrase;
+        // let listOf = phrase.querySelectorAll('li');
+        console.log(phrase);
+    }
+
+    handleInteraction() {
+
     }
 
     /** end Game Class */

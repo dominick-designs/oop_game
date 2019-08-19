@@ -15,10 +15,17 @@ class Phrase {
         let div = document.getElementById('phrase');
         let ul = div.firstElementChild;
 
-        let random = game.getRandomPhrase().phrase
-        let splitLetters = [...random];
+        let random = game.activePhrase.phrase;
 
-        splitLetters.forEach(letters => {
+        /**could get random phrase this way */
+        // let random = new Game();
+        // random = random.activePhrase.phrase;
+        // console.log(random);
+        /**or could get random phrase this way */
+        // let random = game.getRandomPhrase().phrase; originally used to get random phrase but called new Game() above instead
+
+        let splitLetters = [...random];
+        const listAll = () => splitLetters.forEach(letters => {
             let li = document.createElement('li');
             let listText = (li.innerHTML = letters);
 
@@ -30,8 +37,54 @@ class Phrase {
 
             ul.appendChild(li);
             div.appendChild(ul);
-            console.log(listText);
+            // console.log(listText);
+            return listText;
+
         });
-    };
+        return listAll();
+    }
+
+    /** * Checks if passed letter is in phrase 
+     *  @param (string) letter - Letter to check 
+     * */
+
+    checkLetter(letter) {
+        let classes = document.querySelectorAll('li');
+        classes = [...classes];
+        const checkAllLetters = classes.forEach(letters => {
+            if (letters.classList.contains(letter)) {
+                return true;
+            }
+        });
+        return true;
+    }
+
+    /** * Displays passed letter on screen after a match is found
+     * @param (string) letter - Letter to display 
+     * */
+
+    showMatchedLetter(letter) {
+
+        if (this.checkLetter(letter) === true) {
+            let classes = document.querySelectorAll('li');
+            classes = [...classes];
+            const checkAllLetters = classes.forEach(letters => {
+                if (letters.classList.contains(letter)) {
+                    letters.classList.add('show')
+                }
+            });
+        }
+
+    }
+
+    // classes = [...classes];
+    // classes = letter;
+    // const checkAllLetters = classes.forEach(letters => {
+    //     if (letters.classList.contains(letter)) {
+    //         letter.classList.add('show');
+    //     }
+    // });
+
+    /** end Phrase class */
 }
 
