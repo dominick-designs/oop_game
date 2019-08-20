@@ -3,7 +3,6 @@
  * Game.js 
  * create a Game class methods for starting and ending the game, handling interactions, getting a random phrase, checking for a win, and removing a life from the scoreboard.
  * */
-
 class Game {
     constructor() {
         this.missed = 0;
@@ -16,11 +15,11 @@ class Game {
     */
     createPhrases() {
         let phraseObjects = [
-            { phrase: 'fp' },
-            { phrase: 'sep' },
-            { phrase: 'tp' },
-            { phrase: 'fop' },
-            { phrase: 'fp' }
+            { phrase: 'Once in a while' },
+            { phrase: 'You see the light' },
+            { phrase: 'In the strangest of places' },
+            { phrase: 'If you look at it right' },
+            { phrase: 'Might as well try' }
         ];
         return phraseObjects;
     }
@@ -37,6 +36,7 @@ class Game {
 
     /** * Begins game by selecting a random phrase and displaying it to user */
     startGame() {
+        this.resetGame();
         const div = document.getElementById('overlay').style.display = 'none'; // Hide
         let active = new Phrase(this.getRandomPhrase().phrase);
         this.activePhrase = active;
@@ -50,7 +50,7 @@ class Game {
      * @return {boolean} True if game has been won, false if game wasn't won 
      * */
     checkForWin() {
-        let classes = document.querySelectorAll('li.hide');
+        let classes = document.getElementsByClassName('hide letter');
         if (classes.length === 0) {
             return true;
         } else {
@@ -68,7 +68,7 @@ class Game {
         }
         // let liveHeart = document.getElementsByClassName('tries');
         let liveHeart = document.getElementById('scoreboard').querySelector('li.tries');
-        if (liveHeart == null && this.checkForWin() == false) {
+        if (liveHeart === null && this.checkForWin() === false) {
             this.gameOver(false);
         } else {
             liveHeart.classList.remove('tries');
@@ -82,17 +82,19 @@ class Game {
      * @param {boolean} gameWon - Whether or not the user won the game */
 
     gameOver(gameWon) {
-        const winOrLose = (winOrLose, gameOverInnerHTML) => {
+        const winOrLose = (winOrLose, remove, removeStart, gameOverInnerHTML) => {
             document.getElementById('overlay').style.display = 'block'; // show
             document.getElementById('overlay').classList.add(winOrLose);
+            document.getElementById('overlay').classList.remove(remove);
+            document.getElementById('overlay').classList.remove(removeStart);
             document.getElementById("game-over-message").innerHTML = gameOverInnerHTML;
             return true;
         };
         if (gameWon == false) {
-            winOrLose('lose', 'You did not win. Better luck next time.');
+            winOrLose('lose', 'win', 'start', 'You did not win. Better luck next time.');
         }
         if (gameWon == true) {
-            winOrLose('win', 'Congratulations! You Won!');
+            winOrLose('win', 'lose', 'start', 'Congratulations! You Won!');
         }
     }
 
@@ -106,17 +108,41 @@ class Game {
         if (game.activePhrase.phrase.includes(buttonHTML)) {
             button.classList.add('chosen');
             phrase.showMatchedLetter(buttonHTML);
-            if (this.checkForWin() == true) {
+            if (this.checkForWin() === true) {
                 this.gameOver(true);
+
             }
         } else {
             button.classList.add('wrong');
             this.removeLife();
             if (this.missed === 5) {
                 this.gameOver(false);
+
             }
         }
     }
 
+    /**reset game so clicking start game button again (after win or lose) will start fresh game */
+
+    resetGame() {
+        /** remove all li elements from phrase div */
+        let removeLis = document.getElementById('phrase').firstElementChild;
+        removeLis.innerHTML = '';
+        /** remove 'wrong' and 'chosen' class from all key buttons */
+        const keyButtons = document.getElementsByClassName('key');
+        let arrayOfKeyButtons = [...keyButtons];
+        const clickKeyButtons = arrayOfKeyButtons.forEach(button => {
+            button.classList.remove('wrong', 'chosen');
+            button.disabled = false;
+        });
+        /**Reset all of the heart images (i.e. the player's lives) in the scoreboard at the bottom of the gameboard to display the `liveHeart.png` image. */
+        let lostHeart = document.querySelectorAll('li.lost');
+        let arrayOfLostHearts = [...lostHeart];
+        arrayOfLostHearts.forEach(lost => {
+            lost.classList.remove('lost');
+            lost.innerHTML = `<img src="images/liveHeart.png" alt="Heart Icon" height="35" width="30">`;
+            lost.classList.add('tries');
+        });
+    }
     /** end Game Class */
 }
