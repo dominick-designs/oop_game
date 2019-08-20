@@ -17,21 +17,27 @@
  * phrase.addPhraseToDisplay();
  */
 
-let game;
+let game = new Game();
 let phrase;
-const button = document.getElementById('btn__reset');
-button.addEventListener('click', () => {
-    game = new Game();
+
+/** click start button to start game */
+const startButton = document.getElementById('btn__reset');
+startButton.addEventListener('click', () => {
     game.startGame();
     game.checkForWin();
     phrase = new Phrase(game.activePhrase.phrase);
-    // phrase.checkLetter('p');
-    // phrase.showMatchedLetter('p');
 });
 
-/**Let's start with testing the new Phrase class methods. To test the `checkLetter()` method, enter the following line of code directly into the console:
- * game.activePhrase.checkLetter('p')
- * */
+/** when clicking on QWERTY keyboard on screen button displays itself in console */
+const keyButtons = document.getElementsByClassName('key');
+let arrayOfKeyButtons = [...keyButtons];
+const clickKeyButtons = arrayOfKeyButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        game.handleInteraction(button);
+    });
+});
+
+
 
 
 

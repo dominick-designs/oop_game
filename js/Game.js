@@ -37,7 +37,7 @@ class Game {
 
     /** * Begins game by selecting a random phrase and displaying it to user */
     startGame() {
-        const div = document.getElementById('overlay').remove();
+        const div = document.getElementById('overlay').style.display = 'none'; // Hide
         let active = new Phrase(this.getRandomPhrase().phrase);
         this.activePhrase = active;
         this.activePhrase.addPhraseToDisplay();
@@ -63,14 +63,59 @@ class Game {
      * Checks if player has remaining lives and ends game if player is out */
 
     removeLife() {
-        /** if checkForWin() === false replace heart with gray heart */
-        if (this.checkForWin() === false) {
-            /** find the heart.png and replace */
+        if (game.checkForWin() === false) {
+            game.missed++;
+        }
+        // let liveHeart = document.getElementsByClassName('tries');
+        let liveHeart = document.getElementById('scoreboard').querySelector('li.tries');
+        if (liveHeart == null && this.checkForWin() == false) {
+            this.gameOver(false);
+        } else {
+            liveHeart.classList.remove('tries');
+            liveHeart.innerHTML = `<img src="images/lostHeart.png" alt="Heart Icon" height="35" width="30">`;
+            liveHeart.classList.add('lost');
         }
     }
 
-    handleInteraction() {
 
+    /** * Displays game over message 
+     * @param {boolean} gameWon - Whether or not the user won the game */
+
+    gameOver(gameWon) {
+        const winOrLose = (winOrLose, gameOverInnerHTML) => {
+            document.getElementById('overlay').style.display = 'block'; // show
+            document.getElementById('overlay').classList.add(winOrLose);
+            document.getElementById("game-over-message").innerHTML = gameOverInnerHTML;
+            return true;
+        };
+        if (gameWon == false) {
+            winOrLose('lose', 'You did not win. Better luck next time.');
+        }
+        if (gameWon == true) {
+            winOrLose('win', 'Congratulations! You Won!');
+        }
+    }
+
+    /** * Handles onscreen keyboard button clicks 
+     *  @param (HTMLButtonElement) button - The clicked button element */
+
+    handleInteraction(button) {
+        button.disabled = true;
+        const buttonHTML = button.innerHTML;
+
+        if (game.activePhrase.phrase.includes(buttonHTML)) {
+            button.classList.add('chosen');
+            phrase.showMatchedLetter(buttonHTML);
+            if (this.checkForWin() == true) {
+                this.gameOver(true);
+            }
+        } else {
+            button.classList.add('wrong');
+            this.removeLife();
+            if (this.missed === 5) {
+                this.gameOver(false);
+            }
+        }
     }
 
     /** end Game Class */
