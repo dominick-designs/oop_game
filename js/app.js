@@ -17,8 +17,13 @@ startButton.addEventListener('click', () => {
 /** when clicking on QWERTY keyboard on screen button */
 const keyButtons = document.getElementsByClassName('key');
 let arrayOfKeyButtons = [...keyButtons];
+let buffer = [];
+
 const clickKeyButtons = arrayOfKeyButtons.forEach(button => {
     button.addEventListener('click', () => {
         game.handleInteraction(button);
     });
 });
+
+
+game.keyStrokeHandler();
