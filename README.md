@@ -18,6 +18,6 @@ This is a pure vanilla javascript app. It is a "phrase-hunter" app wherein the u
  
  #### Transparency 
  
- This app is part of the Treehouse Fullstack Javascript techdegree course. The HTML, CSS and images files were provided. A PDF guide was provided with a detailed outline on the classes and methods that were needed in order to get the app to work. Otherwise, all of the code in the ```js``` directory is original (except where noted as modified from elsewhere). 
+ This app is fourth project (out of 10) of the [Treehouse Fullstack Javascript techdegree course](https://teamtreehouse.com/tracks/full-stack-javascript). The HTML, CSS and images files were provided as well as a PDF guide with a detailed outline on the classes and methods needed in order to get the app to work. Otherwise, all of the code in the ```js``` directory is original (except where noted as modified from elsewhere). 
    
 
