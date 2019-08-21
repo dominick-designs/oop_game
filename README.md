@@ -1,5 +1,7 @@
 # Phraser Game Show App
 
+[See live version of the game](https://dominick-designs.github.io/oop_game-v2/)
+
 This is a pure vanilla javascript app. It is a "phrase-hunter" app wherein the user is provided with an onscreen keyboard and a hidden phrase. The game outline is as follows:
 
 1) guess the word by choosing letters
