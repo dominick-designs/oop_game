@@ -61,7 +61,6 @@ class Game {
     /** * Increases the value of the missed property 
      *  Removes a life from the scoreboard 
      * Checks if player has remaining lives and ends game if player is out */
-
     removeLife() {
         if (game.checkForWin() === false) {
             game.missed++;
@@ -80,7 +79,6 @@ class Game {
 
     /** * Displays game over message 
      * @param {boolean} gameWon - Whether or not the user won the game */
-
     gameOver(gameWon) {
         const winOrLose = (winOrLose, remove, removeStart, gameOverInnerHTML) => {
             document.getElementById('overlay').style.display = 'block'; // show
@@ -100,7 +98,6 @@ class Game {
 
     /** * Handles onscreen keyboard button clicks 
      *  @param (HTMLButtonElement) button - The clicked button element */
-
     handleInteraction(button) {
         button.disabled = true;
         const buttonHTML = button.innerHTML;
@@ -122,7 +119,6 @@ class Game {
     }
 
     /**reset game so clicking start game button again (after win or lose) will start fresh game */
-
     resetGame() {
         /** remove all li elements from phrase div */
         let removeLis = document.getElementById('phrase').firstElementChild;
