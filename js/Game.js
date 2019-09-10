@@ -41,7 +41,7 @@ class Game {
         let active = new Phrase(this.getRandomPhrase().phrase);
         this.activePhrase = active;
         this.activePhrase.addPhraseToDisplay();
-        console.log(this.activePhrase.phrase);
+        // console.log(this.activePhrase.phrase);
         this.checkForWin();
     }
 
